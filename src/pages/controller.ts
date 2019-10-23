@@ -1,13 +1,14 @@
 // src/pages/controller.ts
 import { JsonController, Get, Param } from 'routing-controllers'
 import pagesById, { Page } from './data'
+type PageList = { pages: Page[] }
 // this makes sure a class is marked as controller that always returns JSON
 // perfect for our REST API
 @JsonController()
-// this markes a method as endpoint
-// in this case it responds to any GET /pages/:id
-// request with :id being a variable parameter
 export default class PageController {
+    // this markes a method as endpoint
+    // in this case it responds to any GET /pages/:id
+    // request with :id being a variable parameter
 
     @Get('/pages/:id')
     getPage(
@@ -16,4 +17,11 @@ export default class PageController {
     ): Page {
         return pagesById[id]
     }
+
+    @Get('/pages')
+    allPages(): PageList {
+        // .. implement!
+        return {pages: Object.values(pagesById)}
+    }
+
 }

@@ -4,7 +4,7 @@ export interface Page {
     content: string
   }
   
-  interface PageDatabase {
+export  interface PageDatabase {
     [id: number]: Page
   }
   
