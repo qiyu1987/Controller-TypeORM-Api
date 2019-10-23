@@ -1,5 +1,14 @@
-// src/pages/data.ts
-const pagesById = {
+export interface Page {
+    id: number,
+    title: string,
+    content: string
+  }
+  
+  interface PageDatabase {
+    [id: number]: Page
+  }
+  
+  const pagesById: PageDatabase = {
     1: {
       id: 1,
       title: 'Homepage',
