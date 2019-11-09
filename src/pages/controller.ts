@@ -6,7 +6,8 @@ import {
 	Put,
 	Body,
 	Post,
-	HttpCode
+	HttpCode,
+	NotFoundError
 } from "routing-controllers"
 import Page from "./entity"
 // this makes sure a class is marked as controller that always returns JSON
@@ -33,9 +34,11 @@ export default class PageController {
 	}
 
 	@Put("/pages/:id")
-	updatePage(@Param("id") id: number, @Body() body: Partial<Page>) {
-		console.log(`Incoming PUT body param:`, body)
-		return Page.findByIds([id])
+	async updatePage(@Param("id") id: number, @Body() update: Partial<Page>) {
+		const page = await Page.findOne(id)
+		if (!page) throw new NotFoundError("Cannot find page")
+
+		return Page.merge(page, update).save()
 	}
 
 	@Post("/pages")
