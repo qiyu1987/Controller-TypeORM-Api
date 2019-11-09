@@ -7,7 +7,8 @@ import {
 	Body,
 	Post,
 	HttpCode,
-	NotFoundError
+	NotFoundError,
+	Authorized
 } from "routing-controllers"
 import Page from "./entity"
 // this makes sure a class is marked as controller that always returns JSON
@@ -41,6 +42,7 @@ export default class PageController {
 		return Page.merge(page, update).save()
 	}
 
+	@Authorized()
 	@Post("/pages")
 	@HttpCode(201)
 	createPage(@Body() page: Page) {
