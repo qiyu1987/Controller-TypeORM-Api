@@ -43,8 +43,7 @@ export default class PageController {
 
 	@Post("/pages")
 	@HttpCode(201)
-	createPage(@Body() body: Page): Page {
-		console.log(`Incoming POST body param:`, body)
-		return body
+	createPage(@Body() page: Page) {
+		return page.save()
 	}
 }
