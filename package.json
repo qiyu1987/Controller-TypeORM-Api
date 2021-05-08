@@ -29,7 +29,7 @@
 		"koa-router": "^7.4.0",
 		"pg": "^7.12.1",
 		"routing-controllers": "^0.8.0",
-		"typeorm": "^0.2.20",
+		"typeorm": "^0.2.25",
 		"typescript": "^3.6.4"
 	}
 }
